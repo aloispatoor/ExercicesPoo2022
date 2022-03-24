@@ -12,3 +12,5 @@ class Oiseau extends Animal
         return "L'animal se nourrit essentiellement de {$this->food}";
     }
 }
+$gypaeteBarbu = new Oiseau("Gypaetus barbatus", "Gypaète Barbu", "vol");
+$kakapo = new Oiseau("Strigops habroptila", "Kakapo", "vol");

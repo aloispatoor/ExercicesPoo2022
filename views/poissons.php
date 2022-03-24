@@ -2,7 +2,9 @@
 require '_head.php'; 
 require '_navbar.php';
 
-use App\Animalerie\Animal;
+use App\Animalerie\Animal\Poisson;
+
+
 
 
 ?>

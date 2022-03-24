@@ -57,5 +57,4 @@ abstract class Animal
     {
         return "Il utilise {$this->getMoyenDeLocomotion()} pour s'enfuir";
     }
-
 }
