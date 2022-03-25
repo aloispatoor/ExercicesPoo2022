@@ -6,11 +6,25 @@ namespace App\Animalerie;
 
 class Oiseau extends Animal
 {
-    private string $moyenDeLocomotion = "vol";
-    public function eat(): string
+    public function __construct(protected string $race, protected string $nom, protected string $moyenDeLocomotion = 'Flies')
     {
-        return "L'animal se nourrit essentiellement de graines et de vers";
+    }
+
+    public function migrate(string $month)
+    {
+        $winter = ['Nov', 'Dec', 'Jan', 'Feb'];
+        $summer = ['May', 'Jun', 'Jul', 'Aug'];
+        if (in_array($month, $winter)) {
+            return "$this->nom will migrate down south on $month";
+        } elseif (in_array($month, $summer)) {
+            return "$this->nom will migrate up north on $month";
+        } else {
+            return "$this->nom won't migrate at this time of the year.";
+        }
+    }
+
+    public function eat()
+    {
+        return 'Eats either meat of other animals, or small stuff like worms/seeds and grains';
     }
 }
-$gypaeteBarbu = new Oiseau("Gypaetus barbatus", "Gypaète Barbu", "vol");
-$kakapo = new Oiseau("Strigops habroptila", "Kakapo", "vol");

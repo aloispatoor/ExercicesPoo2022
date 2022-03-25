@@ -3,7 +3,6 @@ require '_head.php';
 require '_navbar.php';
 
 ?>
-<body>
-    <h1>Salut</h1>
+    <h1>Bonjour, c'est les Exercices de POO</h1>
 </body>
 </html>
