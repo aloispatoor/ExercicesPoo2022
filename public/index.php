@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Router;
-
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
     $path = '../'.str_replace('App', 'src', $class).'.php';

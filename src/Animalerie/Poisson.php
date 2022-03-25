@@ -6,10 +6,10 @@ namespace App\Animalerie;
 
 class Poisson extends Animal
 {
-    private string $moyenDeLocomotion;
-    public function eat(string $food): string
+    private string $moyenDeLocomotion = "nage";
+    public function eat(): string
     {
-        return "L'animal se nourrit essentiellement de {$this->food}";
+        return "L'animal se nourrit essentiellement de larves et d'algues";
     }
 }
 
