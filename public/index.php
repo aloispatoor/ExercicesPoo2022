@@ -4,6 +4,7 @@ declare(strict_types = 1);
 use App\Animalerie\Oiseau;
 use App\Animalerie\Poisson;
 use App\Bonus\Calculatrice;
+use App\Controller\HomeController;
 
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
@@ -14,8 +15,13 @@ spl_autoload_register(function ($class) {
     }
 });
 
+$root = dirname(__DIR__).DIRECTORY_SEPARATOR;
+define('VIEWS_PATH', $root.'views'.DIRECTORY_SEPARATOR);
+
 $router = new App\Router();
-$router->register('/', function () { include '../views/home.php'; })
+$router->get('/', function () { include '../views/homepage.php'; })
+    ->get('/alt', [App\Controller\HomeController::class, 'index'])
+    ->post('/', [App\Controller\HomeController::class, 'form'])
     ->register('/oiseau', function () {
     $eagle = new Oiseau('Eagle', 'notUSA');
     $albatros = new Oiseau('Albatros', 'CAW');
@@ -31,6 +37,7 @@ $router->register('/', function () { include '../views/home.php'; })
     ->register('/bonus', function (){
     include '../views/bonus.php';
 });
-$router->resolve($_SERVER['REQUEST_URI']);
+
+echo $router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
 
 
