@@ -11,30 +11,29 @@ class Calculatrice {
     {     
     }
 
-    public function add(int $number)
+    public function add(int $number): int
     {
-
         $result = $number + $receiver;
         return $result;
     }
-    public function multiply(int $number)
+    public function multiply(int $number): int
     {
         $result = $number * $receiver;
         return $result;
     }
-    public function divide(int $number)
+    public function divide(int $number): int
     {
     
         $result = $number / $receiver;
         return $result;
     }
-    public function substract(int $number)
+    public function substract(int $number): int
     {
 
         $result = $number - $receiver;
         return $result;
     }
-    public function median(int $number)
+    public function median(int $number): int
     {
         
         $result = $number + $receiver;
