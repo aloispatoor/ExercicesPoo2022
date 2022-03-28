@@ -1,8 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
-use App;
+declare(strict_types = 1);
+use App\Animalerie\Oiseau;
+use App\Animalerie\Poisson;
+use App\Bonus\Calculatrice;
+use App\Controller\HomeController;
 
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
@@ -13,7 +15,29 @@ spl_autoload_register(function ($class) {
     }
 });
 
+$root = dirname(__DIR__).DIRECTORY_SEPARATOR;
+define('VIEWS_PATH', $root.'views'.DIRECTORY_SEPARATOR);
+
 $router = new App\Router();
-$router->register('/', function () { include '../views/home.php'; });
-$router->resolve($_SERVER['REQUEST_URI']);
+$router->get('/', function () { include '../views/homepage.php'; })
+    ->get('/alt', [App\Controller\HomeController::class, 'index'])
+    ->post('/', [App\Controller\HomeController::class, 'form'])
+    ->register('/oiseau', function () {
+    $eagle = new Oiseau('Eagle', 'notUSA');
+    $albatros = new Oiseau('Albatros', 'CAW');
+    $pigeon = new Oiseau('Pigeon', 'Stupid');
+    include '../views/oiseau.php';
+})
+    ->register('/poisson', function () {
+    $guppito = new Poisson('Guppy', 'Guppito');
+    $redFish = new Poisson('Poisson Rouge', 'LPPSR');
+    $shark = new Poisson('Requin', 'NomNom');
+    include '../views/poisson.php';
+})
+    ->register('/bonus', function (){
+    include '../views/bonus.php';
+});
+
+echo $router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
+
 

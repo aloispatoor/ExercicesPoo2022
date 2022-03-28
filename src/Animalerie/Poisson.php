@@ -6,9 +6,26 @@ namespace App\Animalerie;
 
 class Poisson extends Animal
 {
-    private string $moyenDeLocomotion;
-    public function eat(string $food): string
+    public function __construct(protected string $race, protected string $nom, protected string $moyenDeLocomotion = 'Swims')
     {
-        return "L'animal se nourrit essentiellement de {$this->food}";
+    }
+
+    public function getSize()
+    {
+        $smallRaces = ['Guppy', 'Platy', 'Néon Bleu', 'Corydoras poivré', 'Xiphophore', 'Poisson Rouge'];
+        if (in_array($this->getRace(), $smallRaces)) {
+            return 'Small';
+        } else {
+            return 'Big';
+        }
+    }
+
+    public function eat(): string
+    {
+        if ('Big' === $this->getSize()) {
+            return 'Eats another fish';
+        } else {
+            return 'Eats whatever he can, probably algaes and larvaes';
+        }
     }
 }

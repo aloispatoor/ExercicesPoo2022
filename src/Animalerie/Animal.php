@@ -6,7 +6,7 @@ namespace App\Animalerie;
 
 abstract class Animal 
 {
-    public function __construct(private string $race, private string $nom, private string $moyenDeLocomotion)
+    public function __construct(protected string $race, protected string $nom, protected string $moyenDeLocomotion)
     {
 
     }
@@ -50,12 +50,13 @@ abstract class Animal
 
     public function identify(): string
     {
-        return "Cet animal est un {$this->getNom()}, de la race {$this->getRace()}";
+        return "My name is $this->nom and i'm part of the $this->race race";
     }
 
     public function flee(): string
     {
-        return "Il utilise {$this->getMoyenDeLocomotion()} pour s'enfuir";
+        return "$this->moyenDeLocomotion away";
     }
 
+    abstract public function eat();
 }
