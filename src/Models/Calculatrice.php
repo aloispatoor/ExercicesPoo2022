@@ -6,7 +6,7 @@ namespace App\Models;
 
 class Calculatrice {
 
-    public function __construct(private int $number, private int $receiver)
+    public function __construct(protected int $number, protected int $receiver)
     {     
     }
 

@@ -40,8 +40,10 @@ class HomeController
 
     public function calculate()
     {
-        $number = $_POST['number1'];
-        $receiver = $_POST['number2'];
+        if(!empty($_POST['number1']) && !empty($_POST['number2'])){
+            $number = $_POST['number1'];
+            $receiver = $_POST['number2'];
+        }
         include '../views/bonus.php';
         return (new \App\View('bonus', []))->render();
     }
