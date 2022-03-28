@@ -1,42 +1,17 @@
 <?php
 
 declare(strict_types = 1);
-use App\Animalerie\Oiseau;
-use App\Animalerie\Poisson;
-use App\Bonus\Calculatrice;
-use App\Controller\HomeController;
 
-spl_autoload_register(function ($class) {
-    $class = str_replace('\\', '/', $class);
-    $path = '../'.str_replace('App', 'src', $class).'.php';
-
-    if (file_exists($path)) {
-        require $path;
-    }
-});
+require '../vendor/autoload.php';
 
 $root = dirname(__DIR__).DIRECTORY_SEPARATOR;
 define('VIEWS_PATH', $root.'views'.DIRECTORY_SEPARATOR);
 
 $router = new App\Router();
-$router->get('/', function () { include '../views/homepage.php'; })
-    ->get('/alt', [App\Controller\HomeController::class, 'index'])
-    ->post('/', [App\Controller\HomeController::class, 'form'])
-    ->register('/oiseau', function () {
-    $eagle = new Oiseau('Eagle', 'notUSA');
-    $albatros = new Oiseau('Albatros', 'CAW');
-    $pigeon = new Oiseau('Pigeon', 'Stupid');
-    include '../views/oiseau.php';
-})
-    ->register('/poisson', function () {
-    $guppito = new Poisson('Guppy', 'Guppito');
-    $redFish = new Poisson('Poisson Rouge', 'LPPSR');
-    $shark = new Poisson('Requin', 'NomNom');
-    include '../views/poisson.php';
-})
-    ->register('/bonus', function (){
-    include '../views/bonus.php';
-});
+$router ->get('/', [App\Controllers\HomeController::class, 'index'])
+        ->get('/oiseau', [App\Controllers\HomeController::class, 'oiseau'])
+        ->get('/poisson', [App\Controllers\HomeController::class, 'poisson'])
+        ->post('/bonus', [App\Controllers\HomeController::class, 'calculate']);
 
 echo $router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
 
