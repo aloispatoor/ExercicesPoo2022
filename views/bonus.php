@@ -4,13 +4,16 @@ require '_navbar.php';
 
 ?>
 <div class="container">
-    <form action="/calculate" method="POST">
-        <input type="number" name="number1" placeholder="Enter a number">
-        <input type="number" name="number2" placeholder="Enter another number">
-        <a href="<?php echo $this->$number->add(); ?>" class="btn btn-secondary">+</a>
-        <a href="<?php echo $this->$number->substract(); ?>" class="btn btn-secondary">-</a>
-        <a href="<?php echo $this->$number->multiply(); ?>" class="btn btn-secondary">*</a>
-        <a href="<?php echo $this->$number->divide(); ?>" class="btn btn-secondary">/</a>
+    <form action="" method="POST">
+        <input type="number" name="number1" id="number" placeholder="Enter a number">
+        <input type="number" name="number2" id="receiver" placeholder="Enter another number">
+        <select name="operator" id="">
+            <option value="add">+</option>
+            <option value="substract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+            <option value="median">Median</option>
+        </select>
     </form>
     <p>
         <?php echo "The result is" .$result; ?>

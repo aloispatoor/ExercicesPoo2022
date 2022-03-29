@@ -6,71 +6,32 @@ namespace App\Models;
 
 class Calculatrice {
 
-    public function __construct(protected int $number, protected int $receiver)
-    {     
-    }
-
-    // GETTERS AND SETTERS
-    /**
-     * Get the value of number
-     */
-    public function getNumber()
+    public function add(float $number, float $receiver): float
     {
-        return $this->number;
+        return $number + $receiver;
+        
     }
-
-    /**
-     * Set the value of number
-     */
-    public function setNumber($number): self
+    public function multiply(float $number, float $receiver): float
     {
-        $this->number = $number;
-
-        return $this;
+        return $number * $receiver;
+        
     }
-
-    /**
-     * Get the value of receiver
-     */
-    public function getReceiver()
+    public function divide(float $number, float $receiver): float
     {
-        return $this->receiver;
+        return $number / $receiver;
+        
     }
-
-    /**
-     * Set the value of receiver
-     */
-    public function setReceiver($receiver): self
+    public function substract(float $number, float $receiver): float
     {
-        $this->receiver = $receiver;
-
-        return $this;
+        return $number - $receiver;
+        
     }
-
-
-    // OTHER METHODS
-    public function add($number, $receiver): int
+    public function median(float $number, float $receiver): float
     {
-        $result = $number + $receiver;
-        return $result;
+        return round(($number + $receiver) / 2);
+        
     }
-    public function multiply($number, $receiver): int
-    {
-        $result = $number * $receiver;
-        return $result;
-    }
-    public function divide($number, $receiver): int
-    {
     
-        $result = $number / $receiver;
-        return $result;
-    }
-    public function substract($number, $receiver): int
-    {
-
-        $result = $number - $receiver;
-        return $result;
-    }
 
 
     

@@ -40,9 +40,23 @@ class HomeController
 
     public function calculate()
     {
-        if(!empty($_POST['number1']) && !empty($_POST['number2'])){
-            $number = $_POST['number1'];
-            $receiver = $_POST['number2'];
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if(in_array('', $_POST)){
+                return header("Location:/bonus");
+            }
+            $operator = htmlspecialchars(trim($_POST['operator']));
+            $number = (float) htmlspecialchars(trim($_POST['number1']));
+            $receiver = (float) htmlspecialchars(trim($_POST['number2']));
+
+            $calculator = new Calculatrice();
+            $result = match ($operator) {
+                'add' => $calculator->add($number, $receiver),
+                'multiply' => $calculator->multiply($number, $receiver),
+                'divide' => $calculator->divide($number, $receiver),
+                'substract' => $calculator->substract($number, $receiver),
+                'median' => $calculator->median($number, $receiver),
+            };
+        
         }
         include '../views/bonus.php';
         return (new \App\View('bonus', []))->render();
